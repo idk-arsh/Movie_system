@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies for You</title>
+    <link rel="stylesheet" href="../static/file.css">
+</head>
+<body>
+    <header>
+        <h1>Movie Recommendations</h1>
+    </header>
+    <main>
+        <section class="recommendations">
+            {% if recommendations %}
+                <ul>
+                    {% for movie in recommendations %}
+                        <li>
+                            <h2>{{ movie }}</h2>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recommendations available.</p>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Movie Recommendations</p>
+    </footer>
+</body>
+</html>

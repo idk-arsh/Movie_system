@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from recommendation import UnifiedRecommendationSystem  # Import your class
+from recommendation import UnifiedRecommendationSystem 
 
 @st.cache_data
 def load_data():
@@ -22,7 +22,7 @@ st.title("Movie Recommendation System")
 
 st.write("Select Your Preferred Genres:")
 
-# Mapping user-friendly genre names to actual column names in the dataset
+
 genres = {
     "Action": "Action",
     "Adventure": "Adventure",
@@ -38,7 +38,7 @@ genres = {
     "Film-Noir":"Film-Noir",
     "Mystery": "Mystery",
     "Romance": "Romance",
-    "Sci-Fi": "Sci-Fi",  # Match the exact name in your dataset
+    "Sci-Fi": "Sci-Fi",  
     "Thriller": "Thriller",
     "War": "War",
     "Western": "Western"

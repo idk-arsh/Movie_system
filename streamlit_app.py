@@ -35,7 +35,6 @@ genres = {
     "Documentary": "Documentary",
     "Drama": "Drama",
     "Fantasy": "Fantasy",
-    "Film-Noir": "FilmNoir",
     "Horror": "Horror",
     "Musical": "Musical",
     "Mystery": "Mystery",

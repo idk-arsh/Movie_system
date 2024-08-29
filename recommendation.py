@@ -66,7 +66,7 @@ class UnifiedRecommendationSystem:
             genre_df = self.preprocessed_data[genre_mask]
             if not genre_df.empty:
                 # Recommend top-rated movies within selected genres
-                recommendations = genre_df.groupby('movieId')['rating'].mean().sort_values(ascending=False).head(10).index.tolist()
+                recommendations = genre_df.groupby('movieId')['rating'].mean().sort_values(ascending=False).head(20).index.tolist()
             else:
                 # Fall back to popular items if no movies match the selected genres
                 recommendations = self.get_popular_items()
@@ -77,7 +77,7 @@ class UnifiedRecommendationSystem:
         recommended_movies = [self.data[self.data['movieId'] == movie_id]['title'].iloc[0] for movie_id in recommendations]
         return recommended_movies
 
-    def get_popular_items(self, top_n=10):
+    def get_popular_items(self, top_n=20):
         # Recommend the most popular items based on rating counts
         popularity = self.data.groupby('movieId')['rating'].count().sort_values(ascending=False)
         popular_items = popularity.index[:top_n].tolist()

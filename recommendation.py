@@ -60,7 +60,7 @@ class UnifiedRecommendationSystem:
             if len(preferred_genres) == len(self.preprocessed_data.columns) - 1:  # Excluding 'userId', 'movieId', 'rating'
                 recommendations = self.get_popular_items()
             else:
-                preferred_genres = [f'genre_{genre.capitalize()}' for genre in preferred_genres]
+                preferred_genres = [f'{genre.capitalize()}' for genre in preferred_genres]
                 genre_mask = self.preprocessed_data[preferred_genres].sum(axis=1) > 0
                 genre_df = self.preprocessed_data[genre_mask]
     

@@ -39,7 +39,7 @@ genres = {
     "Musical": "Musical",
     "Mystery": "Mystery",
     "Romance": "Romance",
-    "Sci-Fi": "SciFi",
+    "Sci-Fi": "Sci-Fi",
     "Thriller": "Thriller",
     "War": "War",
     "Western": "Western"

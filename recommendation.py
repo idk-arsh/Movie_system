@@ -47,7 +47,7 @@ class UnifiedRecommendationSystem:
         unrated_items = list(all_items - user_items)
 
         predictions = [(item, self.predict(user_id, item)) for item in unrated_items]
-        recommendations = sorted(predictions, key=lambda x: x[1], reverse=True)[:20]
+        recommendations = sorted(predictions, key=lambda x: x[1], reverse=True)[:10]
         recommended_items = [item for item, _ in recommendations]
         recommended_movies = [self.data[self.data['movieId'] == movie_id]['title'].iloc[0] for movie_id in recommended_items]
         return recommended_movies
@@ -69,7 +69,7 @@ class UnifiedRecommendationSystem:
         return recommended_movies
 
 
-    def get_popular_items(self, top_n=20):
+    def get_popular_items(self, top_n=10):
         popularity = self.data.groupby('movieId')['rating'].count().sort_values(ascending=False)
         popular_items = popularity.index[:top_n].tolist()
         return popular_items

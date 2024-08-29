@@ -54,19 +54,26 @@ class UnifiedRecommendationSystem:
 
     def get_recommendations_for_new_user(self, preferences=None):
         if preferences:
-            preferred_genres = [f'genre_{genre.capitalize()}' for genre in preferences.get('genres', [])]
-            genre_mask = self.preprocessed_data[preferred_genres].sum(axis=1) > 0
-            genre_df = self.preprocessed_data[genre_mask]
+            preferred_genres = preferences.get('genres', [])
             
-            if not genre_df.empty:
-                recommendations = genre_df.groupby('movieId')['rating'].mean().sort_values(ascending=False).head(10).index.tolist()
-            else:
+            # Check if all genres are selected
+            if len(preferred_genres) == len(self.preprocessed_data.columns) - 1:  # Excluding 'userId', 'movieId', 'rating'
                 recommendations = self.get_popular_items()
+            else:
+                preferred_genres = [f'genre_{genre.capitalize()}' for genre in preferred_genres]
+                genre_mask = self.preprocessed_data[preferred_genres].sum(axis=1) > 0
+                genre_df = self.preprocessed_data[genre_mask]
+    
+                if not genre_df.empty:
+                    recommendations = genre_df.groupby('movieId')['rating'].mean().sort_values(ascending=False).head(10).index.tolist()
+                else:
+                    recommendations = self.get_popular_items()
         else:
             recommendations = self.get_popular_items()
-
+    
         recommended_movies = [self.data[self.data['movieId'] == movie_id]['title'].iloc[0] for movie_id in recommendations]
         return recommended_movies
+
 
 
     def get_popular_items(self, top_n=20):

@@ -8,9 +8,7 @@ def load_data():
 
 data = load_data()
 
-
 best_params = {'n_factors': 100, 'reg_all': 0.05}
-
 
 @st.cache_resource
 def initialize_model(data, params):
@@ -18,13 +16,13 @@ def initialize_model(data, params):
     rec_system.train_model()
     return rec_system
 
-
 rec_system = initialize_model(data, best_params)
 
 st.title("Movie Recommendation System")
 
 st.write("Select Your Preferred Genres:")
 
+# Mapping user-friendly genre names to actual column names in the dataset
 genres = {
     "Action": "Action",
     "Adventure": "Adventure",
@@ -39,7 +37,7 @@ genres = {
     "Musical": "Musical",
     "Mystery": "Mystery",
     "Romance": "Romance",
-    "Sci-Fi": "Sci-Fi",
+    "Sci-Fi": "Sci-Fi",  # Match the exact name in your dataset
     "Thriller": "Thriller",
     "War": "War",
     "Western": "Western"

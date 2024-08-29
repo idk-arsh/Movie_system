@@ -12,7 +12,7 @@ class UnifiedRecommendationSystem:
 
     def preprocessing_data(self):
         # Create dummy variables for genres
-        df_genres = self.data['genres'].str.get_dummies('|').add_prefix('genre_')
+        df_genres = self.data['genres'].str.get_dummies('|')
         self.data = pd.concat([self.data, df_genres], axis=1)
         # Add genre count and release year columns
         self.data['genres_count'] = self.data['genres'].apply(lambda x: len(x.split('|')))
@@ -61,7 +61,7 @@ class UnifiedRecommendationSystem:
     def get_recommendations_for_new_user(self, preferences=None):
         if preferences:
             # Convert selected genres to the appropriate format for filtering
-            preferred_genres = [f'genre_{genre}' for genre in preferences.get('genres', [])]
+            preferred_genres = [f'{genre}' for genre in preferences.get('genres', [])]
             genre_mask = self.preprocessed_data[preferred_genres].sum(axis=1) > 0
             genre_df = self.preprocessed_data[genre_mask]
             if not genre_df.empty:

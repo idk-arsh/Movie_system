@@ -35,6 +35,7 @@ genres = {
     "Fantasy": "Fantasy",
     "Horror": "Horror",
     "Musical": "Musical",
+    "Film-Noir":"Film-Noir",
     "Mystery": "Mystery",
     "Romance": "Romance",
     "Sci-Fi": "Sci-Fi",  # Match the exact name in your dataset
